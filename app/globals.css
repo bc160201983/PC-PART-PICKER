@@ -8,3 +8,43 @@
   margin: 0;
   padding: 0;
 }
+
+@layer components {
+  .card {
+    background-color: white;
+    margin-right: 32px;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 430px;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    cursor: pointer;
+  }
+  .card h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    line-height: 1.0625;
+    padding: 0.75rem 1rem 0 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .card h3:hover {
+    transition: color 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: #1e5c85;
+  }
+  .price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eaeaea;
+    height: 100%;
+    padding-top: 0.5rem;
+  }
+  .price p {
+    font-weight: 700;
+    font-size: 12px;
+  }
+}
