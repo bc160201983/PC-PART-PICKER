@@ -8,7 +8,9 @@ const Navbar = () => {
     <>
       <div className="h-[74px] bg-[#11131D] text-white w-full">
         <div className="flex justify-between h-full items-center">
-          <div className="font-bold w-2/3 text-lg ml-[90px]">PCPARTPICKER</div>
+          <div className="font-bold w-2/3 text-lg ml-[90px]">
+            <Link href={"/"}>PCPARTPICKER</Link>
+          </div>
           <div className="w-4/12 flex justify-center items-center">
             <ul className="flex gap-4">
               <li>Log In</li>
@@ -21,7 +23,7 @@ const Navbar = () => {
         <div className="flex text-sm h-full items-center border-t border-l border-[#26293b]">
           <Link
             className="font-bold py-4 px-4 border-l border-[#26293b] flex justify-center items-center text-sm ml-[90px] hover:bg-[#26293b] hover:transition-all hover:ease-in-out"
-            href={"#"}
+            href={"/build"}
           >
             <BsWrenchAdjustableCircle className="h-6 w-6 mr-2" />
             Builder
