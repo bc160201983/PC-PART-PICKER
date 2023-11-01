@@ -47,4 +47,22 @@
     font-weight: 700;
     font-size: 12px;
   }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .cardLink ul {
+    margin-top: 16px;
+  }
+  .cardLink li {
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .cardLink h1 {
+    font-size: 18px;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+  }
 }
