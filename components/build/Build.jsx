@@ -30,20 +30,20 @@ const Build = () => {
           </div>
           <div className="btn-area flex justify-end items-center flex-1 w-1/4">
             <button className="btn-icon">
-              <BsClockHistory className="mr-1" />
+              <BsClockHistory className="mr-1 w-4 h-4" />
               History
             </button>
             <button className="btn-icon">
-              <BsSave className="mr-1" />
+              <BsSave className="mr-1 w-4 h-4" />
               Save As
             </button>
             <button className="btn-icon">
-              <AiOutlinePlus className="mr-1" />
+              <AiOutlinePlus className="mr-1 w-4 h-4" />
               Start New
             </button>
           </div>
         </div>
-        <div className="pcPartsSelection h-full">
+        <div className="pcPartsSelection h-full w-full">
           <PartsSelectionTable />
         </div>
       </section>
