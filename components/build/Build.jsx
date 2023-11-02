@@ -1,0 +1,54 @@
+import React from "react";
+import { FaHistory } from "react-icons/fa";
+import { PiCopySimple } from "react-icons/pi";
+import { BsSave, BsClockHistory } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
+import PartsSelectionTable from "../shared/PartsSelectionTable/PartsSelectionTable";
+
+const Build = () => {
+  return (
+    <>
+      <div className="h-[100px] bg-[#545578] flex justify-center items-center flex-col">
+        <h1 className="text-[32px] font-bold text-white">Choose Your Parts</h1>
+      </div>
+      <section className="max-w-6xl flex flex-col m-auto justify-center items-center">
+        <div
+          className="shareArea w-full bg-white rounded-lg p-2 my-[48px] shadow-lg
+
+"
+        >
+          <div className="flex justify-center items-center  w-2/3">
+            <div className=" copy-icon bg-[#f7f7f7] flex justify-center items-center cursor-pointer">
+              <PiCopySimple className="w-5 h-5" />
+            </div>
+            <input
+              type="text"
+              value={"https://uk.pcpartpicker.com/list/jDgyVn"}
+              placeholder="permalink"
+              className="bg-[#f7f7f7] outline-none w-full"
+            />
+          </div>
+          <div className="btn-area flex justify-end items-center flex-1 w-1/4">
+            <button className="btn-icon">
+              <BsClockHistory className="mr-1" />
+              History
+            </button>
+            <button className="btn-icon">
+              <BsSave className="mr-1" />
+              Save As
+            </button>
+            <button className="btn-icon">
+              <AiOutlinePlus className="mr-1" />
+              Start New
+            </button>
+          </div>
+        </div>
+        <div className="pcPartsSelection h-full">
+          <PartsSelectionTable />
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Build;
