@@ -3,7 +3,7 @@
 import { authenticate } from "@/app/(dashboard)/lib/actions";
 import styles from "./loginForm.module.css";
 import { useFormState } from "react-dom";
-
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 const LoginForm = () => {
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const handleLogin = async (formData) => {
     // console.log(formData);
     const data = await authenticate(formData);
-
+    redirect("/dashboard");
     data.error && setErr(data.error);
   };
 
