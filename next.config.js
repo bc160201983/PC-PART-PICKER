@@ -25,7 +25,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "placehold.co",
+        hostname: "cdna.pcpartpicker.com",
       },
     ],
   },

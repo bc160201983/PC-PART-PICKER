@@ -1,16 +1,19 @@
+import PageTitleHeader from "@/components/shared/PageTitleHeader/PageTitleHeader";
 import React from "react";
 import { FaHistory } from "react-icons/fa";
 import { PiCopySimple } from "react-icons/pi";
 import { BsSave, BsClockHistory } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
-import PartsSelectionTable from "../shared/PartsSelectionTable/PartsSelectionTable";
-import PageTitleHeader from "../shared/PageTitleHeader/PageTitleHeader";
+import Compare from "@/components/compare/Compare";
 
-const Build = () => {
+const page = () => {
   return (
-    <>
-      <PageTitleHeader title="Chose Your Parts" />
-      <section className="max-w-6xl flex flex-col m-auto justify-center items-center">
+    <div className="min-h-screen bg-[#f4f4f3]">
+      <PageTitleHeader
+        title="CPU Comparison
+"
+      />
+      <div className="max-w-6xl m-auto">
         <div
           className="shareArea w-full bg-white rounded-lg p-2 my-[48px] shadow-lg
 
@@ -42,12 +45,13 @@ const Build = () => {
             </button>
           </div>
         </div>
-        <div className="pcPartsSelection h-full w-full">
-          <PartsSelectionTable />
+        <div className="grid grid-cols-2 justify-center gap-5">
+          <Compare />
+          <Compare />
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 
-export default Build;
+export default page;

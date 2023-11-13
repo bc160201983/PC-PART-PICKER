@@ -31,14 +31,14 @@ const Navbar = () => {
 
           <Link
             className="font-bold py-4 px-4 border-l border-[#26293b] flex justify-center items-center text-sm hover:bg-[#26293b] hover:transition-all hover:ease-in-out"
-            href={"#"}
+            href={"/products"}
           >
             <GiProcessor className="h-6 w-6 mr-2" />
             Products
           </Link>
           <Link
             className="font-bold py-4 px-4 border-r border-l border-[#26293b] flex justify-center items-center text-sm hover:bg-[#26293b] hover:transition-all hover:ease-in-out"
-            href={"#"}
+            href={"/compare"}
           >
             <BiGitCompare className="h-6 w-6 mr-2" />
             Compare
