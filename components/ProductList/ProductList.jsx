@@ -1,8 +1,18 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-const ProductList = () => {
+const ProductList = ({
+  id,
+  title,
+  link,
+  desc,
+  price,
+  socket,
+  series,
+  capacity,
+}) => {
   return (
     <>
       <tr className="border-1 border-b border-[#dbdbdb]">
@@ -22,6 +32,7 @@ const ProductList = () => {
           >
             <div className="-_image p-1 bg-white w-12 h-12 flex justify-center items-center img-border">
               <Image
+                alt={title}
                 className="w-9 h-9"
                 width={36}
                 height={36}
@@ -31,16 +42,16 @@ const ProductList = () => {
               />
             </div>
 
-            <p className="text-sm hover:text-[#2c87c3] hover:transition-all hover:ease-in-out">
-              MSI GeForce RTX 3060 Ventus 2X 12G
+            <p className="text-sm capitalize hover:text-[#2c87c3] hover:transition-all hover:ease-in-out">
+              {title}
             </p>
           </Link>
         </td>
-        <td className="text-right">$2999</td>
+        <td className="text-right">£{price}</td>
         <td className="text-right">Amazon.co.uk</td>
         <td className="text-right">
           <Link
-            href="#"
+            href={`${link}`}
             className="text-sm font-bold bg-[#00b16a] py-2 px-4 text-white rounded"
           >
             Buy

@@ -35,8 +35,13 @@ const menuItems = [
         icon: <MdShoppingBag />,
       },
       {
-        title: "Transactions",
-        path: "/dashboard/transactions",
+        title: "Brands",
+        path: "/dashboard/brands",
+        icon: <MdAttachMoney />,
+      },
+      {
+        title: "Categories",
+        path: "/dashboard/categories",
         icon: <MdAttachMoney />,
       },
     ],
@@ -108,7 +113,9 @@ const Sidebar = async () => {
       <form
         action={async () => {
           "use server";
-          await signOut();
+          await signOut({
+            callbackUrl: "/login", // Redirect to the login page after logout
+          });
         }}
       >
         <button className={styles.logout}>

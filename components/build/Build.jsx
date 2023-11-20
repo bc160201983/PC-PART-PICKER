@@ -5,8 +5,9 @@ import { BsSave, BsClockHistory } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import PartsSelectionTable from "../shared/PartsSelectionTable/PartsSelectionTable";
 import PageTitleHeader from "../shared/PageTitleHeader/PageTitleHeader";
+import { fetchcategories } from "@/app/(dashboard)/lib/actions";
 
-const Build = () => {
+const Build = async () => {
   return (
     <>
       <PageTitleHeader title="Chose Your Parts" />

@@ -1,11 +1,18 @@
-import { updateProduct } from "@/app/(dashboard)/lib/actions";
-import { fetchProduct } from "@/app/(dashboard)/lib/data";
+import {
+  updateProduct,
+  fetchBrands,
+  fetchcategories,
+  fetchProduct,
+} from "@/app/(dashboard)/lib/actions";
+
 import styles from "@/app/(dashboard)/ui/dashboard/products/singleProduct/singleProduct.module.css";
 import Image from "next/image";
 
 const SingleProductPage = async ({ params }) => {
   const { id } = params;
   const product = await fetchProduct(id);
+  const categories = await fetchcategories();
+  const brands = await fetchBrands();
 
   return (
     <div className={styles.container}>
@@ -17,38 +24,80 @@ const SingleProductPage = async ({ params }) => {
       </div>
       <div className={styles.formContainer}>
         <form action={updateProduct} className={styles.form}>
-          <input type="hidden" name="id" value={product.id} />
-          <label>Title</label>
-          <input type="text" name="title" placeholder={product.title} />
-          <label>Price</label>
-          <input type="number" name="price" placeholder={product.price} />
-          <label>Stock</label>
-          <input type="number" name="stock" placeholder={product.stock} />
-          <label>Color</label>
+          <input type="hidden" name="id" value={id} />
           <input
             type="text"
-            name="color"
-            placeholder={product.color || "color"}
+            placeholder="title"
+            defaultValue={product.title}
+            name="title"
+            required
           />
-          <label>Size</label>
-          <textarea
+          <input
             type="text"
-            name="size"
-            placeholder={product.size || "size"}
+            defaultValue={product.link}
+            placeholder="Purchase link"
+            name="link"
+            required
           />
-          <label>Cat</label>
-          <select name="cat" id="cat">
-            <option value="kitchen">Kitchen</option>
-            <option value="computers">Computers</option>
+
+          <select name="category" id="cat">
+            <option defaultValue="general">Choose a Category</option>
+            {categories.map((category) => (
+              <option
+                className="uppercase"
+                key={category._id}
+                value={category._id}
+              >
+                {category.name}
+              </option>
+            ))}
           </select>
-          <label>Description</label>
+          <select name="brand" id="brand">
+            <option defaultValue="general">Choose a Brand</option>
+            {brands.map((brand) => (
+              <option className="uppercase" key={brand._id} value={brand._id}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
+          <input
+            type="number"
+            defaultValue={product.price}
+            placeholder="price"
+            name="price"
+            required
+          />
+          <input
+            type="text"
+            defaultValue={product.socket}
+            placeholder="Socket"
+            name="socket"
+            required
+          />
+          <input
+            type="text"
+            defaultValue={product.series}
+            placeholder="Series"
+            name="series"
+            required
+          />
+          <input
+            type="text"
+            defaultValue={product.capacity}
+            placeholder="Capacity"
+            name="capacity"
+            required
+          />
+
           <textarea
+            required
             name="desc"
+            defaultValue={product.desc}
             id="desc"
-            rows="10"
-            placeholder={product.desc}
+            rows="16"
+            placeholder="Description"
           ></textarea>
-          <button>Update</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

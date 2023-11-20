@@ -4,7 +4,7 @@ import { FaHistory } from "react-icons/fa";
 import { PiCopySimple } from "react-icons/pi";
 import { BsSave, BsClockHistory } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
-import Compare from "@/components/compare/Compare";
+import Compare from "@/components/compare/compare";
 
 const page = () => {
   return (

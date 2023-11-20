@@ -118,4 +118,21 @@
   .img-border {
     border: 1px solid #eaeaea;
   }
+  .com-btn {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px 10px 16px;
+    border: 1px solid #eaeaea;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-left: 10px;
+    background: #2c87c3;
+    cursor: pointer;
+  }
+  .com-btn:hover {
+    transition: color 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: #1e5c85;
+  }
 }

@@ -1,12 +1,13 @@
-"use client";
+"use server";
 import Link from "next/link";
 import React from "react";
 import Components from "../Components/Components";
 import { usePathname } from "next/navigation";
+import { fetchcategories } from "@/app/(dashboard)/lib/actions";
 
-const PartsSelectionTable = () => {
-  const pathname = usePathname();
-  console.log(pathname);
+const PartsSelectionTable = async () => {
+  const cat = await fetchcategories();
+
   return (
     <>
       <div className="">
@@ -29,10 +30,13 @@ const PartsSelectionTable = () => {
             </tr>
           </thead>
           <tbody>
-            <Components />
-            <Components />
-            <Components />
-            <Components />
+            {cat.map((category) => (
+              <Components
+                key={category._id}
+                name={category.name}
+                slug={category.slug}
+              />
+            ))}
           </tbody>
         </table>
       </div>
