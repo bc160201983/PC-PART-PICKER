@@ -1,16 +1,12 @@
 import PageTitleHeader from "@/components/shared/PageTitleHeader/PageTitleHeader";
-import React from "react";
-import { FaHistory } from "react-icons/fa";
+
 import { PiCopySimple } from "react-icons/pi";
 import { BsSave, BsClockHistory, BsRobot, BsShare } from "react-icons/bs";
-import { SiProbot } from "react-icons/si";
 
 import { AiOutlinePlus } from "react-icons/ai";
 import Compare from "@/components/compare/compare";
 import { fetchComProducts } from "@/app/(dashboard)/lib/actions";
-import { split } from "postcss/lib/list";
-import Button from "@/components/button/Button";
-import { useGlobalContext } from "@/context/context";
+
 import Bot from "@/components/Bot/Bot";
 
 const page = async ({ params, req }) => {
