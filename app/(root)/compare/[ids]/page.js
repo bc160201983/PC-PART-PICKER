@@ -1,10 +1,10 @@
 import PageTitleHeader from "@/components/shared/PageTitleHeader/PageTitleHeader";
-
+import Compare from "@/components/Compare/Compare";
 import { PiCopySimple } from "react-icons/pi";
 import { BsSave, BsClockHistory, BsRobot, BsShare } from "react-icons/bs";
 
 import { AiOutlinePlus } from "react-icons/ai";
-import Compare from "@/components/compare/compare";
+
 import { fetchComProducts } from "@/app/(dashboard)/lib/actions";
 
 import Bot from "@/components/Bot/Bot";
