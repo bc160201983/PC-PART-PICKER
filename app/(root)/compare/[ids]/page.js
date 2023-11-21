@@ -1,5 +1,5 @@
 import PageTitleHeader from "@/components/shared/PageTitleHeader/PageTitleHeader";
-import Compare from "@/components/Compare/Compare";
+import ComProducts from "@/components/ComProducts/ComProducts";
 import { PiCopySimple } from "react-icons/pi";
 import { BsSave, BsClockHistory, BsRobot, BsShare } from "react-icons/bs";
 
@@ -9,7 +9,7 @@ import { fetchComProducts } from "@/app/(dashboard)/lib/actions";
 
 import Bot from "@/components/Bot/Bot";
 
-const page = async ({ params, req }) => {
+const page = async ({ params }) => {
   const { ids } = params;
   const splitids = decodeURIComponent(ids).split(",");
   const products = await fetchComProducts(decodeURIComponent(ids));
@@ -55,7 +55,7 @@ const page = async ({ params, req }) => {
         </div>
         <div className={`flex w-full gap-5`}>
           {products.map((product) => (
-            <Compare
+            <ComProducts
               id={product._id}
               title={product.title}
               link={product.link}
