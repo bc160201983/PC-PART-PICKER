@@ -2,11 +2,23 @@ import PageTitleHeader from "@/components/shared/PageTitleHeader/PageTitleHeader
 import React from "react";
 import { FaHistory } from "react-icons/fa";
 import { PiCopySimple } from "react-icons/pi";
-import { BsSave, BsClockHistory } from "react-icons/bs";
+import { BsSave, BsClockHistory, BsRobot, BsShare } from "react-icons/bs";
+import { SiProbot } from "react-icons/si";
+
 import { AiOutlinePlus } from "react-icons/ai";
 import Compare from "@/components/compare/compare";
+import { fetchComProducts } from "@/app/(dashboard)/lib/actions";
+import { split } from "postcss/lib/list";
+import Button from "@/components/button/Button";
+import { useGlobalContext } from "@/context/context";
+import Bot from "@/components/Bot/Bot";
 
-const page = () => {
+const page = async ({ params, req }) => {
+  const { ids } = params;
+  const splitids = decodeURIComponent(ids).split(",");
+  const products = await fetchComProducts(decodeURIComponent(ids));
+  const url = process.env.HOSTNAME + "/compare/" + decodeURIComponent(ids);
+
   return (
     <div className="min-h-screen bg-[#f4f4f3]">
       <PageTitleHeader
@@ -25,19 +37,19 @@ const page = () => {
             </div>
             <input
               type="text"
-              value={"https://uk.pcpartpicker.com/list/jDgyVn"}
+              value={url}
               placeholder="permalink"
               className="bg-[#f7f7f7] outline-none w-full"
             />
           </div>
           <div className="btn-area flex justify-end items-center flex-1 w-1/4">
             <button className="btn-icon">
-              <BsClockHistory className="mr-1 w-4 h-4" />
-              History
+              <BsShare className="mr-1 w-4 h-4" />
+              Share
             </button>
             <button className="btn-icon">
-              <BsSave className="mr-1 w-4 h-4" />
-              Save As
+              <BsShare className="mr-1 w-4 h-4" />
+              Share
             </button>
             <button className="btn-icon">
               <AiOutlinePlus className="mr-1 w-4 h-4" />
@@ -45,11 +57,22 @@ const page = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-center gap-5">
-          <Compare />
-          <Compare />
+        <div className={`flex w-full gap-5`}>
+          {products.map((product) => (
+            <Compare
+              id={product._id}
+              title={product.title}
+              link={product.link}
+              price={product.price}
+              brand={product.brand}
+              socket={product.socket}
+              series={product.series}
+              copacity={product.copacity}
+            />
+          ))}
         </div>
       </div>
+      <Bot />
     </div>
   );
 };

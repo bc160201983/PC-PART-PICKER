@@ -1,9 +1,19 @@
+"use client";
 import React, { useState, useContext, useEffect } from "react";
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  const [showBot, setBot] = useState(false);
+
+  const handleBotToggle = () => {
+    setBot(!showBot);
+  };
+  return (
+    <AppContext.Provider value={{ handleBotToggle, showBot }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 // make sure use
 export const useGlobalContext = () => {

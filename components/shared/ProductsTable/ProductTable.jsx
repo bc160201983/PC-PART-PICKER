@@ -34,7 +34,7 @@ const ProductTable = ({ products }) => {
           Select None
         </div>
         <Link
-          href={`/compare/${selectedIds.join(",")}`}
+          href={`/compare/${selectedIds}`}
           className={`${
             selectedIds.length > 0 ? "com-btn" : "btn-icon"
           } font-normal `}

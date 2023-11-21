@@ -338,3 +338,15 @@ export const findProductByCat = async (slug) => {
   }
   revalidatePath("/products/cpu");
 };
+
+export const fetchComProducts = async (ids) => {
+  connectToDB();
+  const splitID = ids.split(",");
+
+  try {
+    const products = await Product.find({ _id: { $in: splitID } });
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};

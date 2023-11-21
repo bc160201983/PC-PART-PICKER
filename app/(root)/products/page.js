@@ -11,7 +11,7 @@ const page = () => {
         title="Choose A CPU Cooler
 "
       />
-      <section className="min-h-screen bg-[#f4f4f3] flex justify-center ">
+      {/* <section className="min-h-screen bg-[#f4f4f3] flex justify-center ">
         <div className="wrapper px-12 my-8">
           <div className="left-sidebar w-[250px] h-full">sidebar</div>
           <div className="main flex-1 w-[1280px] h-full">
@@ -47,7 +47,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
