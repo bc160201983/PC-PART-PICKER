@@ -107,6 +107,7 @@ export const addProduct = async (formData) => {
     });
 
     const createdProduct = await newProduct.save();
+
     await Categories.findOneAndUpdate(
       { _id: createdProduct.category },
       {
@@ -350,3 +351,9 @@ export const fetchComProducts = async (ids) => {
     console.log(error);
   }
 };
+
+//get emmbedings
+
+async function getEmbeddingForProducts(title, desc) {
+  return getEmdedding(title + "\n\n" + desc);
+}

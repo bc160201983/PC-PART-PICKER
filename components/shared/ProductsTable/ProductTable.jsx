@@ -5,6 +5,7 @@ import Image from "next/image";
 import Components from "../Components/Components";
 import ProductList from "@/components/ProductList/ProductList";
 import { findProductByCat } from "@/app/(dashboard)/lib/actions";
+import AddButton from "@/components/AddButton/AddButton";
 
 const ProductTable = ({ products }) => {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -51,13 +52,17 @@ const ProductTable = ({ products }) => {
                 Name
               </th>
               <th scope="col" className="w-[150px] text-right">
-                Colour
+                Price
               </th>
               <th scope="col" className="text-right w-[150px]">
-                Rating
+                Where
+              </th>
+
+              <th scope="col" className="text-right w-[100px]">
+                Buy
               </th>
               <th scope="col" className="text-right w-[100px]">
-                Price
+                Action
               </th>
             </tr>
           </thead>
@@ -101,13 +106,16 @@ const ProductTable = ({ products }) => {
                   </td>
                   <td className="text-right">£{price}</td>
                   <td className="text-right">Amazon.co.uk</td>
-                  <td className="text-right">
+                  <td className="text-right mr-8">
                     <Link
                       href={`${link}`}
                       className="text-sm font-bold bg-[#00b16a] py-2 px-4 text-white rounded"
                     >
                       Buy
                     </Link>
+                  </td>
+                  <td className="float-right pt-6">
+                    <AddButton text={"Add"} />
                   </td>
                 </tr>
               )

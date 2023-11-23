@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AddButton from "../AddButton/AddButton";
 
 const ComProducts = ({ _id, link, title, price, brand, series, socket }) => {
   return (
@@ -22,9 +23,10 @@ const ComProducts = ({ _id, link, title, price, brand, series, socket }) => {
         <h1 className="text-[16px] font-bold flex-wrap">{title}</h1>
       </Link>
       <div className="flex justify-start items-center gap-5 border-b-[3px] border-black w-full pb-2">
-        <div className="btn-add py-[5px] px-[10px] rounded bg-[#2c87c3] text-white font-medium hover:bg-[#153f5b] hover:transition-all hover:ease-in-out cursor-pointer">
+        <AddButton text={"Add"} />
+        {/* <div className="btn-add py-[5px] px-[10px] rounded bg-[#2c87c3] text-white font-medium hover:bg-[#153f5b] hover:transition-all hover:ease-in-out cursor-pointer">
           Add
-        </div>
+        </div> */}
         <div className="flex justify-center flex-col ">
           <p className="font-bold text-[14px]">Price</p>
           <Link href={"/product/1"} className="">

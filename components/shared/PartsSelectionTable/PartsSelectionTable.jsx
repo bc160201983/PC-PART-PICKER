@@ -27,6 +27,9 @@ const PartsSelectionTable = async () => {
               <th scope="col" className="text-right w-[100px]">
                 Buy
               </th>
+              <th scope="col" className="text-right w-[100px]">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>

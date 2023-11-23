@@ -8,6 +8,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { fetchComProducts } from "@/app/(dashboard)/lib/actions";
 
 import Bot from "@/components/Bot/Bot";
+import { openAi } from "@/context/openAi";
+import AIChatButton from "@/components/AIChatButton/AIChatButton";
 
 const page = async ({ params }) => {
   const { ids } = params;
@@ -39,10 +41,7 @@ const page = async ({ params }) => {
             />
           </div>
           <div className="btn-area flex justify-end items-center flex-1 w-1/4">
-            <button className="btn-icon">
-              <BsShare className="mr-1 w-4 h-4" />
-              Share
-            </button>
+            Share
             <button className="btn-icon">
               <BsShare className="mr-1 w-4 h-4" />
               Share
@@ -68,7 +67,7 @@ const page = async ({ params }) => {
           ))}
         </div>
       </div>
-      <Bot />
+      <Bot products={products} />
     </div>
   );
 };
