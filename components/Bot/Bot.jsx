@@ -53,7 +53,7 @@ const Bot = ({ products }) => {
       {botPopup && (
         <div className="chat-box z-10 w-full max-w-[500px] p-1">
           <div
-            className="close-icon border rounded-full p-1 relative top-0 max-w-fit right-0"
+            className="close-icon border rounded-full p-1 relative top-0 bottom-0 left-[450px] max-w-fit"
             onClick={closeBotPopUp}
           >
             <svg

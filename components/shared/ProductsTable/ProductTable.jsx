@@ -22,7 +22,7 @@ const ProductTable = ({ products }) => {
       }
     });
   };
-  console.log(selectedIds);
+
   return (
     <>
       <div className="search flex items-center gap-2 text-xs py-3">
@@ -68,7 +68,17 @@ const ProductTable = ({ products }) => {
           </thead>
           <tbody>
             {products.map(
-              ({ _id, title, link, desc, price, socket, series, capacity }) => (
+              ({
+                _id,
+                category,
+                title,
+                link,
+                desc,
+                price,
+                socket,
+                series,
+                capacity,
+              }) => (
                 <tr key={_id} className="border-1 border-b border-[#dbdbdb]">
                   <td className="" onClick={() => handleCheckBox(_id)}>
                     <input
@@ -115,7 +125,20 @@ const ProductTable = ({ products }) => {
                     </Link>
                   </td>
                   <td className="float-right pt-6">
-                    <AddButton text={"Add"} />
+                    <AddButton
+                      text={"Add"}
+                      product={{
+                        _id,
+                        category,
+                        title,
+                        link,
+                        desc,
+                        price,
+                        socket,
+                        series,
+                        capacity,
+                      }}
+                    />
                   </td>
                 </tr>
               )

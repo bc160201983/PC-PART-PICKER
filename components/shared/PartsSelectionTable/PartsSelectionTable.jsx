@@ -4,6 +4,8 @@ import React from "react";
 import Components from "../Components/Components";
 import { usePathname } from "next/navigation";
 import { fetchcategories } from "@/app/(dashboard)/lib/actions";
+import { useGlobalContext } from "@/context/context";
+import TotalPrice from "@/components/TotalPrice/TotalPrice";
 
 const PartsSelectionTable = async () => {
   const cat = await fetchcategories();
@@ -36,10 +38,12 @@ const PartsSelectionTable = async () => {
             {cat.map((category) => (
               <Components
                 key={category._id}
+                catId={category._id}
                 name={category.name}
                 slug={category.slug}
               />
             ))}
+            <TotalPrice />
           </tbody>
         </table>
       </div>

@@ -41,7 +41,10 @@ const page = async ({ params }) => {
             />
           </div>
           <div className="btn-area flex justify-end items-center flex-1 w-1/4">
-            Share
+            <button className="btn-icon w-[88px]">
+              <BsRobot className="mr-1 w-4 h-4" />
+              AI
+            </button>
             <button className="btn-icon">
               <BsShare className="mr-1 w-4 h-4" />
               Share
