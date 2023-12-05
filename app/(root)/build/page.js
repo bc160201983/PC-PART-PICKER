@@ -4,7 +4,7 @@ import {
 } from "@/app/(dashboard)/lib/actions";
 import Build from "@/components/build/Build";
 import React from "react";
-import { metadata } from "../layout";
+import { metadata } from "../../PDFViewer/layout";
 const page = async () => {
   const categories = await fetchcategories();
 
