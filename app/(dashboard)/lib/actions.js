@@ -5,6 +5,7 @@ import {
   Brands,
   Categories,
   Product,
+  ShareLink,
   User,
 } from "@/app/(dashboard)/lib/models";
 import { connectToDB } from "@/app/(dashboard)/lib/utils";
@@ -13,6 +14,9 @@ import bcrypt from "bcrypt";
 import { auth, signIn } from "@/app/(dashboard)/auth";
 import { redirects } from "@/next.config";
 import { data } from "autoprefixer";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { storage } from "@/context/firebase";
+import Cookies from "js-cookie";
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
@@ -77,9 +81,14 @@ export const updateUser = async (formData) => {
 };
 
 export const addProduct = async (formData) => {
+  // console.log(Object.fromEntries(formData));
+
   const {
     title,
     link,
+    core_count,
+    core_clock,
+    microarchitecture,
     category,
     brand,
     desc,
@@ -90,12 +99,25 @@ export const addProduct = async (formData) => {
     capacity,
   } = Object.fromEntries(formData);
 
+  const file = img;
+  try {
+    const storageRef = ref(storage, `images/${file.name}`);
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log("Uploaded a blob or a file");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
   try {
     connectToDB();
 
     const newProduct = new Product({
       title,
       link,
+      core_count,
+      core_clock,
+      microarchitecture,
       category,
       brand,
       desc,
@@ -144,6 +166,9 @@ export const updateProduct = async (formData) => {
     id,
     title,
     link,
+    core_count,
+    core_clock,
+    microarchitecture,
     category,
     brand,
     desc,
@@ -159,8 +184,12 @@ export const updateProduct = async (formData) => {
     connectToDB();
 
     const updateFields = {
+      id,
       title,
       link,
+      core_count,
+      core_clock,
+      microarchitecture,
       category,
       brand,
       desc,
@@ -176,6 +205,9 @@ export const updateProduct = async (formData) => {
       {
         title,
         link,
+        core_count,
+        core_clock,
+        microarchitecture,
         category,
         brand,
         desc,
@@ -351,9 +383,126 @@ export const fetchComProducts = async (ids) => {
     console.log(error);
   }
 };
+export const fetchProductById = async (id) => {
+  connectToDB();
+  try {
+    const product = Product.findById(id);
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//get emmbedings
+export const fetchBrandById = async (id) => {
+  connectToDB();
+  try {
+    const brand = Brands.findById(id);
+    return brand;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-async function getEmbeddingForProducts(title, desc) {
-  return getEmdedding(title + "\n\n" + desc);
-}
+//create shareLink
+
+export const addProductsShareLink = async (productID) => {
+  // Get the ShareLink ID from cookies
+  // console.log(productID);
+  connectToDB();
+
+  try {
+    const shareLink = new ShareLink();
+    shareLink.productIDS.push(productID);
+    const res = await shareLink.save();
+    const { _id } = res;
+
+    return _id;
+    // if (shareLinkId) {
+    //   // If there's a ShareLink ID in cookies, update the ShareLink in the database
+    //   const shareLink = await ShareLink.findById(shareLinkId);
+    //   if (shareLink) {
+    //     // Add the product ID to the ShareLink's productIDS array
+    //     shareLink.productIDS.push(productIDS);
+    //     await shareLink.save();
+    //   }
+    // }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProductsShareLink = async (shareLinkID, productID) => {
+  connectToDB();
+
+  try {
+    const shareLink = await ShareLink.findById(shareLinkID);
+    if (shareLink) {
+      // Add the product ID to the ShareLink's productIDS array
+      shareLink.productIDS.push(productID);
+      await shareLink.save();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Define a function to remove a product from a ShareLink
+export const removeProductFromShareLink = async (shareLinkID, productID) => {
+  try {
+    // Use your ShareLink model to find the ShareLink by its _id
+    const shareLink = await ShareLink.findById(shareLinkID);
+
+    if (shareLink) {
+      // Remove the productID from the ShareLink's productIDS array
+      const index = shareLink.productIDS.indexOf(productID);
+      if (index !== -1) {
+        shareLink.productIDS.splice(index, 1);
+      }
+
+      // Save the updated ShareLink to the database
+      await shareLink.save();
+
+      console.log(
+        `Product with ID ${productID} has been removed from ShareLink with ID ${shareLinkID}.`
+      );
+    } else {
+      console.log(`ShareLink with ID ${shareLinkID} was not found.`);
+    }
+  } catch (error) {
+    console.error(
+      `Error removing product with ID ${productID} from ShareLink with ID ${shareLinkID}:`,
+      error
+    );
+  }
+};
+
+// Define a function to delete a ShareLink by its _id
+export const deleteShareLink = async (shareLinkID) => {
+  try {
+    // Use your ShareLink model to find and remove the ShareLink
+    const result = await ShareLink.deleteOne({ _id: shareLinkID });
+
+    if (result.deletedCount === 1) {
+      console.log(`ShareLink with ID ${shareLinkID} has been deleted.`);
+    } else {
+      console.log(`ShareLink with ID ${shareLinkID} was not found.`);
+    }
+  } catch (error) {
+    console.error(`Error deleting ShareLink with ID ${shareLinkID}:`, error);
+  }
+};
+
+export const fetchShareLinkProducts = async () => {
+  connectToDB();
+
+  try {
+    const shareLink = await ShareLink.findById("656f01f35f55ee4b77d6c965");
+    const products = await Product.find({
+      _id: { $in: shareLink.productIDS },
+    });
+
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};

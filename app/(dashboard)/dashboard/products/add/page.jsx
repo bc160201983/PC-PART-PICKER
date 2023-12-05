@@ -12,8 +12,15 @@ const AddProductPage = async () => {
     <div className={styles.container}>
       <form action={addProduct} className={styles.form}>
         <input type="text" placeholder="title" name="title" required />
+        <input type="text" name="img" placeholder="image link" />
         <input type="text" placeholder="Purchase link" name="link" required />
-
+        <input type="text" placeholder="Core Count" name="core_count" />
+        <input type="text" placeholder="Core Clock" name="clock" />
+        <input
+          type="text"
+          placeholder="Microarchitecture"
+          name="microarchitecture"
+        />
         <select name="category" id="cat">
           <option value="general">Choose a Category</option>
           {categories.map((category) => (
@@ -38,7 +45,6 @@ const AddProductPage = async () => {
         <input type="text" placeholder="Socket" name="socket" required />
         <input type="text" placeholder="Series" name="series" required />
         <input type="text" placeholder="Capacity" name="capacity" required />
-
         <textarea
           required
           name="desc"

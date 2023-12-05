@@ -78,6 +78,7 @@ const ProductTable = ({ products }) => {
                 socket,
                 series,
                 capacity,
+                img,
               }) => (
                 <tr key={_id} className="border-1 border-b border-[#dbdbdb]">
                   <td className="" onClick={() => handleCheckBox(_id)}>
@@ -94,7 +95,7 @@ const ProductTable = ({ products }) => {
 
                   <td td className="text-xs font-bold py-4">
                     <Link
-                      href={`/product/1`}
+                      href={`/product/${_id}`}
                       className="flex justify-start items-center gap-2"
                     >
                       <div className="-_image p-1 bg-white w-12 h-12 flex justify-center items-center img-border">
@@ -103,9 +104,7 @@ const ProductTable = ({ products }) => {
                           className="w-9 h-9"
                           width={36}
                           height={36}
-                          src={
-                            "https://cdna.pcpartpicker.com/static/forever/images/product/f0e0e59d75066ec825667b71c31e3c83.256p.jpg"
-                          }
+                          src={img}
                         />
                       </div>
 

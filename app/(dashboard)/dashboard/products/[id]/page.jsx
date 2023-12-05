@@ -18,7 +18,7 @@ const SingleProductPage = async ({ params }) => {
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src="/noavatar.png" alt="" fill />
+          <Image src={product.img} alt="" fill />
         </div>
         {product.title}
       </div>
@@ -34,10 +34,29 @@ const SingleProductPage = async ({ params }) => {
           />
           <input
             type="text"
+            name="img"
+            placeholder="image link"
+            defaultValue={product.img}
+          />
+          <input
+            type="text"
             defaultValue={product.link}
             placeholder="Purchase link"
             name="link"
             required
+          />
+
+          <input
+            type="text"
+            defaultValue={product.core_count}
+            placeholder="Core Count"
+            name="core_count"
+          />
+          <input
+            type="text"
+            defaultValue={product.core_clock}
+            placeholder="Core Clock"
+            name="clock"
           />
 
           <select name="category" id="cat">

@@ -43,12 +43,12 @@ const Navbar = () => {
             <BiGitCompare className="h-6 w-6 mr-2" />
             Compare
           </Link>
-          <div className="w-full flex justify-end items-center">
+          {/* <div className="w-full flex justify-end items-center">
             <ul className="flex gap-4">
               <li>Log In</li>
               <li>Register</li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

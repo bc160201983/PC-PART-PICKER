@@ -50,6 +50,15 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    core_count: {
+      type: String,
+    },
+    core_clock: {
+      type: String,
+    },
+    microarchitecture: {
+      type: String,
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Categories",
@@ -128,6 +137,12 @@ const categoriesSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const shareLinkSchema = new mongoose.Schema({
+  productIDS: [mongoose.Schema.Types.ObjectId],
+});
+
+export const ShareLink =
+  mongoose.models.ShareLink || mongoose.model("ShareLink", shareLinkSchema);
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 //brnads model
 export const Brands =

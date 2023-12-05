@@ -1,4 +1,4 @@
-import { Product, User } from "./models";
+import { Categories, Product, User } from "./models";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -61,25 +61,55 @@ export const fetchProduct = async (id) => {
   }
 };
 
+const TotalUsers = async () => {
+  try {
+    connectToDB();
+    const count = await User.find().count();
+    return count;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch total users!");
+  }
+};
+const TotalProducts = async () => {
+  try {
+    connectToDB();
+    const count = await Product.find().count();
+    return count;
+  } catch (error) {
+    console.log(err);
+    throw new Error("Failed to fetch total users!");
+  }
+};
+const TotalCategories = async () => {
+  try {
+    connectToDB();
+    const count = await Categories.find().count();
+    return count;
+  } catch (error) {
+    console.log(err);
+    throw new Error("Failed to fetch total users!");
+  }
+};
 // DUMMY DATA
 
 export const cards = [
   {
     id: 1,
     title: "Total Users",
-    number: 10.928,
+    number: TotalUsers(),
     change: 12,
   },
   {
     id: 2,
-    title: "Stock",
-    number: 8.236,
+    title: "Products",
+    number: TotalProducts(),
     change: -2,
   },
   {
     id: 3,
-    title: "Revenue",
-    number: 6.642,
+    title: "Categories",
+    number: TotalCategories(),
     change: 18,
   },
 ];

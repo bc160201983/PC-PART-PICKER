@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import AddButton from "../AddButton/AddButton";
 
-const ComProducts = ({ _id, link, title, price, brand, series, socket }) => {
+const ComProducts = ({ id, link, title, price, brand, series, socket }) => {
   return (
     <div className="flex justify-center items-start flex-col gap-6 w-full">
       <div className="p-4 w-[126px] h-[126px] bg-white img-border">
@@ -17,7 +17,7 @@ const ComProducts = ({ _id, link, title, price, brand, series, socket }) => {
         />
       </div>
       <Link
-        href={"/product/1"}
+        href={`/product/${id}`}
         className="hover:underline hover:text-[#1e5c85] hover:transition-all hover:ease-in-out"
       >
         <h1 className="text-[16px] font-bold flex-wrap">{title}</h1>
