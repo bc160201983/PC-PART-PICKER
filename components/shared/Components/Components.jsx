@@ -1,18 +1,24 @@
 "use client";
-import { fetchcategories } from "@/app/(dashboard)/lib/actions";
+import {
+  fetchShareLinkProducts,
+  fetchcategories,
+} from "@/app/(dashboard)/lib/actions";
 import AddButton from "@/components/AddButton/AddButton";
 import { RxCross2 } from "react-icons/rx";
 
 import { useGlobalContext } from "@/context/context";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import Bot from "@/components/Bot/Bot";
 
-const Components = ({ catId, name, slug }) => {
-  const { cart, removeFromCart } = useGlobalContext();
+const Components = ({ catId, name, slug, shareLinkID, shareProducts }) => {
+  const { cart, removeFromCart, setCart } = useGlobalContext();
+
   // Filter cart items by category
-  const selectedProducts = cart.filter((p) => p.category === catId);
+  const selectedProducts = shareLinkID
+    ? shareProducts.filter((p) => p.category === catId)
+    : cart.filter((p) => p.category === catId);
 
   return (
     <>
@@ -88,7 +94,7 @@ const Components = ({ catId, name, slug }) => {
         </td>
       </tr>
 
-      <Bot products={cart} />
+      <Bot products={cart} shareProducts={shareProducts} />
     </>
   );
 };

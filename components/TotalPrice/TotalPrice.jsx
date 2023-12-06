@@ -2,12 +2,13 @@
 import { useGlobalContext } from "@/context/context";
 import React from "react";
 
-const TotalPrice = () => {
+const TotalPrice = ({ shareProducts }) => {
   const { cart } = useGlobalContext();
-  const total = cart.reduce(
-    (accumulator, product) => accumulator + product.price,
-    0
-  );
+  const total =
+    shareProducts?.reduce(
+      (accumulator, product) => accumulator + product.price,
+      0
+    ) || cart.reduce((accumulator, product) => accumulator + product.price, 0);
   return (
     <>
       <tr className="h-[48px] text-[20px] leading-[30px]">

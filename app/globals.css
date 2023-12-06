@@ -177,4 +177,21 @@
       display: none;
     }
   }
+  .copy-message {
+    position: relative;
+    background-color: #4caf50;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: none;
+  }
+
+  .copy-message.show {
+    display: block;
+  }
 }

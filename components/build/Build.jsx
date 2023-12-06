@@ -6,14 +6,17 @@ import { fetchcategories } from "@/app/(dashboard)/lib/actions";
 import { useGlobalContext } from "@/context/context";
 import SearchArea from "../SearchArea/SearchArea";
 
-const Build = async () => {
+const Build = async ({ shareLinkID, shareProducts }) => {
   return (
     <>
       <PageTitleHeader title="Choose Your Parts" />
       <section className="max-w-6xl flex flex-col m-auto justify-center items-center">
-        <SearchArea />
+        <SearchArea paramShareLinkID={shareLinkID} />
         <div className="pcPartsSelection h-full w-full">
-          <PartsSelectionTable />
+          <PartsSelectionTable
+            shareLinkID={shareLinkID}
+            shareProducts={shareProducts}
+          />
         </div>
       </section>
     </>

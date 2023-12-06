@@ -4,7 +4,8 @@ import { BsFillTrash3Fill, BsRobot } from "react-icons/bs";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-const Bot = ({ products }) => {
+const Bot = ({ products, shareProducts }) => {
+  const finalProducts = products.length > 0 ? products : shareProducts;
   const {
     messages,
     input,
@@ -14,7 +15,7 @@ const Bot = ({ products }) => {
     isLoading,
     error,
   } = useChat({
-    body: { products: products },
+    body: { products: finalProducts },
     initialInput: "Tell me about These products",
   });
 

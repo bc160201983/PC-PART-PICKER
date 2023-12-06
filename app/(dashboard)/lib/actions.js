@@ -492,11 +492,11 @@ export const deleteShareLink = async (shareLinkID) => {
   }
 };
 
-export const fetchShareLinkProducts = async () => {
+export const fetchShareLinkProducts = async (id) => {
   connectToDB();
 
   try {
-    const shareLink = await ShareLink.findById("656f01f35f55ee4b77d6c965");
+    const shareLink = await ShareLink.findById(id);
     const products = await Product.find({
       _id: { $in: shareLink.productIDS },
     });
@@ -504,5 +504,6 @@ export const fetchShareLinkProducts = async () => {
     return products;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };

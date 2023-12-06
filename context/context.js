@@ -77,7 +77,7 @@ const AppProvider = ({ children }) => {
     Cookies.set("shoppingCart", JSON.stringify(cart)); // Cookie expires in 7 days
   }, [cart]);
   return (
-    <AppContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <AppContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>
       {children}
     </AppContext.Provider>
   );

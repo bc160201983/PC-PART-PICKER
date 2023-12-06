@@ -7,7 +7,7 @@ import { fetchcategories } from "@/app/(dashboard)/lib/actions";
 import { useGlobalContext } from "@/context/context";
 import TotalPrice from "@/components/TotalPrice/TotalPrice";
 
-const PartsSelectionTable = async () => {
+const PartsSelectionTable = async ({ shareLinkID, shareProducts }) => {
   const cat = await fetchcategories();
 
   return (
@@ -41,9 +41,11 @@ const PartsSelectionTable = async () => {
                 catId={category._id}
                 name={category.name}
                 slug={category.slug}
+                shareLinkID={shareLinkID}
+                shareProducts={shareProducts}
               />
             ))}
-            <TotalPrice />
+            <TotalPrice shareProducts={shareProducts} />
           </tbody>
         </table>
       </div>
