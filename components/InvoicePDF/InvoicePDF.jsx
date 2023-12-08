@@ -1,59 +1,103 @@
 import React from "react";
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  Image,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
+// Define styles for your PDF
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
     padding: 20,
   },
   header: {
-    fontSize: 16,
+    fontSize: 20,
+    marginBottom: 20,
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+  address: {
     marginBottom: 20,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
+  tableHeader: {
+    flexDirection: "row",
+    backgroundColor: "#2c87c3",
+    color: "white",
+    padding: 5,
+    justifyContent: "space-between",
   },
-  text: {
-    fontSize: 12,
-    marginBottom: 10,
+  tableRow: {
+    flexDirection: "row",
+    borderBottom: 1,
+    borderColor: "#2c87c3",
+    alignItems: "center",
+    padding: 5,
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 10,
+  description: {
+    flex: 2,
+    textAlign: "left",
+  },
+  quantity: {
+    flex: 1,
+    textAlign: "center",
+  },
+  price: {
+    flex: 1,
+    textAlign: "center",
+  },
+  total: {
+    flex: 1,
+    textAlign: "center",
   },
 });
 
-const InvoicePDF = ({ selectedProducts, customerInfo, invoiceDate }) => {
+// Sample data for the invoice
+const invoiceData = {
+  invoiceNumber: "INV-001",
+  date: "2023-12-01",
+  customerName: "John Doe",
+  customerAddress: "123 Main St, City, Country",
+  items: [
+    { description: "Product 1", quantity: 2, price: 50, total: 100 },
+    { description: "Product 2", quantity: 3, price: 30, total: 90 },
+  ],
+  subtotal: 190,
+  tax: 19,
+  total: 209,
+};
+
+const MyPDF = ({ selectedProducts }) => {
+  const todayDate = new Date().toLocaleDateString();
+  const total = selectedProducts?.reduce(
+    (accumulator, product) => accumulator + product.price,
+    0
+  );
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Text style={styles.header}>Invoice</Text>
-        <Text style={styles.title}>Invoice Date: {invoiceDate}</Text>
-        <Text style={styles.title}>Customer Information:</Text>
-        <Text style={styles.text}>Name: {customerInfo.name}</Text>
-        <Text style={styles.text}>Email: {customerInfo.email}</Text>
-        <Text style={styles.text}>Address: {customerInfo.address}</Text>
-        <Text style={styles.title}>Selected Products:</Text>
-        {selectedProducts.map((product) => (
-          <View key={product.id} style={{ marginBottom: 10 }}>
-            <Image src={product.image} style={styles.image} />
-            <Text style={styles.text}>Product Name: {product.name}</Text>
-            <Text style={styles.text}>Price: {product.price}</Text>
+        <Text style={styles.header}>SMART BUILD AI</Text>
+        <View style={styles.address}>
+          <Text>Date: {todayDate}</Text>
+        </View>
+        <View style={styles.tableHeader}>
+          <Text style={styles.description}>Description</Text>
+
+          <Text style={styles.price}>Price</Text>
+        </View>
+        {selectedProducts.map((item, index) => (
+          <View key={index} style={styles.tableRow}>
+            <Text style={styles.description}>{item.title}</Text>
+
+            <Text style={styles.price}>£{item.price}</Text>
           </View>
         ))}
+
+        <View style={styles.tableRow}>
+          <Text style={styles.description}></Text>
+          <Text style={styles.quantity}></Text>
+          <Text style={styles.price}>Total:</Text>
+          <Text style={styles.total}>£{total}</Text>
+        </View>
       </Page>
     </Document>
   );
 };
 
-export default InvoicePDF;
+export default MyPDF;

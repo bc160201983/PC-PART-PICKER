@@ -369,7 +369,7 @@ export const findProductByCat = async (slug) => {
   } catch (error) {
     console.log(error);
   }
-  revalidatePath("/products/cpu");
+  revalidatePath(`/products/${slug}`);
 };
 
 export const fetchComProducts = async (ids) => {
@@ -395,6 +395,7 @@ export const fetchProductById = async (id) => {
 
 export const fetchBrandById = async (id) => {
   connectToDB();
+
   try {
     const brand = Brands.findById(id);
     return brand;
@@ -495,15 +496,24 @@ export const deleteShareLink = async (shareLinkID) => {
 export const fetchShareLinkProducts = async (id) => {
   connectToDB();
 
+  // if (!id) {
+  //   redirect("/build");
+  // }
+
   try {
     const shareLink = await ShareLink.findById(id);
+
     const products = await Product.find({
       _id: { $in: shareLink.productIDS },
     });
+    if (!products) {
+      redirect("/build");
+    }
+
+    console.log("products:", products);
 
     return products;
   } catch (error) {
     console.log(error);
-    return [];
   }
 };

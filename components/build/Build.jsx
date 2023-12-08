@@ -11,7 +11,10 @@ const Build = async ({ shareLinkID, shareProducts }) => {
     <>
       <PageTitleHeader title="Choose Your Parts" />
       <section className="max-w-6xl flex flex-col m-auto justify-center items-center">
-        <SearchArea paramShareLinkID={shareLinkID} />
+        <SearchArea
+          paramShareLinkID={shareLinkID}
+          shareProducts={shareProducts}
+        />
         <div className="pcPartsSelection h-full w-full">
           <PartsSelectionTable
             shareLinkID={shareLinkID}

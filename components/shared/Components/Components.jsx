@@ -43,18 +43,28 @@ const Components = ({ catId, name, slug, shareLinkID, shareProducts }) => {
         </td>
 
         <td className="text-right">
-          {cart &&
+          {(cart &&
             cart.length > 0 &&
-            cart.map((p) => p.category === catId && <p>£{p.price}</p>)}
+            cart.map((p) => p.category === catId && <p>£{p.price}</p>)) ||
+            (shareProducts &&
+              shareProducts.length > 0 &&
+              shareProducts.map(
+                (p) => p.category === catId && <p>£{p.price}</p>
+              ))}
         </td>
         <td className="text-right">
-          {cart &&
+          {(cart &&
             cart.length > 0 &&
-            cart.map((p) => p.category === catId && <p>{"Amazon.co.uk"}</p>)}
+            cart.map((p) => p.category === catId && <p>{"Amazon.co.uk"}</p>)) ||
+            (shareProducts &&
+              shareProducts.length > 0 &&
+              shareProducts.map(
+                (p) => p.category === catId && <p>{"Amazon.co.uk"}</p>
+              ))}
         </td>
 
         <td className="text-right">
-          {cart &&
+          {(cart &&
             cart.length > 0 &&
             cart.map(
               (p) =>
@@ -66,7 +76,20 @@ const Components = ({ catId, name, slug, shareLinkID, shareProducts }) => {
                     Buy
                   </Link>
                 )
-            )}
+            )) ||
+            (shareProducts &&
+              shareProducts.length > 0 &&
+              shareProducts.map(
+                (p) =>
+                  p.category === catId && (
+                    <Link
+                      href={p.link}
+                      className="text-sm font-bold bg-[#00b16a] py-2 px-4 text-white rounded"
+                    >
+                      Buy
+                    </Link>
+                  )
+              ))}
         </td>
         <td className="text-center flex justify-end p-2 px-4">
           {/* <AddButton text={"Add"} /> */}
@@ -102,6 +125,7 @@ const Components = ({ catId, name, slug, shareLinkID, shareProducts }) => {
 export default Components;
 
 const BuildTable = ({ products }) => {
+  console.log(products);
   return (
     <>
       {products.map((product) => (
@@ -112,9 +136,7 @@ const BuildTable = ({ products }) => {
               className="w-9 h-9"
               width={36}
               height={36}
-              src={
-                "https://cdna.pcpartpicker.com/static/forever/images/product/f0e0e59d75066ec825667b71c31e3c83.256p.jpg"
-              }
+              src={product.img}
               alt={product.title}
             />
           </div>

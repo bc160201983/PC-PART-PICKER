@@ -69,7 +69,31 @@ const AppProvider = ({ children }) => {
       // Remove the product from the cart
       const updatedCart = cart.filter((product) => product._id !== productId);
       setCart(updatedCart);
+      const isCartEmpty = updatedCart.length === 0;
+
+      if (isCartEmpty) {
+        // If the cart is empty, delete the ShareLink from the database
+        await deleteShareLink(shareLinkID);
+        // Also, clear the ShareLink ID from cookies
+        Cookies.remove("shareLinkID");
+      }
     }
+  };
+
+  // Function to start a new shopping session
+  const startNewSession = async () => {
+    // Clear the shopping cart
+    setCart([]);
+
+    // Remove the ShareLink related data
+    const shareLinkID = Cookies.get("shareLinkID");
+    if (shareLinkID) {
+      await deleteShareLink(shareLinkID); // Implement this function to delete the ShareLink
+      Cookies.remove("shareLinkID");
+    }
+
+    // Navigate to the desired page (e.g., the starting page for a new session)
+    router.push("/build");
   };
 
   // Save the cart to cookies whenever it changes
@@ -77,7 +101,9 @@ const AppProvider = ({ children }) => {
     Cookies.set("shoppingCart", JSON.stringify(cart)); // Cookie expires in 7 days
   }, [cart]);
   return (
-    <AppContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>
+    <AppContext.Provider
+      value={{ cart, addToCart, removeFromCart, setCart, startNewSession }}
+    >
       {children}
     </AppContext.Provider>
   );

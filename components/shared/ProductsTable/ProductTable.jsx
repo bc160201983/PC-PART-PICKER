@@ -130,6 +130,7 @@ const ProductTable = ({ products }) => {
                         _id,
                         category,
                         title,
+                        img,
                         link,
                         desc,
                         price,

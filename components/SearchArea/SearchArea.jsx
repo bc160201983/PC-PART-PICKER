@@ -14,12 +14,14 @@ import {
   fetchShareLinkProducts,
 } from "@/app/(dashboard)/lib/actions";
 import Cookies from "js-cookie";
+import DownloadPDFButton from "../DownloadPDFButton/DownloadPDFButton";
 
-const SearchArea = ({ paramShareLinkID }) => {
-  const { cart } = useGlobalContext();
+const SearchArea = ({ paramShareLinkID, shareProducts }) => {
+  const { cart, startNewSession } = useGlobalContext();
   const [copyMessageVisible, setCopyMessageVisible] = useState(false);
   const copyTextRef = useRef(null);
   const shareLinkID = paramShareLinkID || Cookies.get("shareLinkID");
+  const products = shareProducts || cart;
 
   const copyToClipboard = () => {
     console.log("clicked");
@@ -95,19 +97,14 @@ const SearchArea = ({ paramShareLinkID }) => {
 
         <div className="btn-area flex justify-end items-center flex-1 w-1/4">
           {/* <form action={createShareLink(cart)}> */}
-          <button
-            className="btn-icon"
-            onClick={() => addProductsShareLink(cart)}
-          >
-            <BsClockHistory className="mr-1 w-4 h-4" />
-            Share
-          </button>
+
           {/* </form> */}
-          <div className="btn-icon">
+          <DownloadPDFButton selectedProducts={products} />
+          {/* <div className="btn-icon cursor-pointer">
             <BsSave className="mr-1 w-4 h-4" />
             Save As
-          </div>
-          <button className="btn-icon">
+          </div> */}
+          <button className="btn-icon" onClick={startNewSession}>
             <AiOutlinePlus className="mr-1 w-4 h-4" />
             Start New
           </button>

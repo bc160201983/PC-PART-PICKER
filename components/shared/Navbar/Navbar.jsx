@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="h-[74px] bg-[#11131D] text-white w-full">
         <div className="flex justify-between h-full items-center">
           <div className="font-bold w-2/3 text-lg ml-[90px]">
-            <Link href={"/"}>PCPARTPICKER</Link>
+            <Link href={"/"}>SMART BUILD AI</Link>
           </div>
           <div className="w-4/12 flex justify-center items-center">
             <ul className="flex gap-4">
