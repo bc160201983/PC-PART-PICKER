@@ -14,7 +14,9 @@ export async function POST(req, res) {
       content:
         "you are a intaligent PC Parts Comparison Expert, compare the performance and value of " +
         products
-          .map((product) => `Title: ${product.title}\n\ndesc: ${product?.desc}`)
+          ?.map(
+            (product) => `Title: ${product?.title}\n\ndesc: ${product?.desc}`
+          )
           .join("\n\n") +
         "And tell me which one user should buy? the answer should be in the form of a sentence.",
     };

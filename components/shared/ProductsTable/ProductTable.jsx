@@ -6,9 +6,11 @@ import Components from "../Components/Components";
 import ProductList from "@/components/ProductList/ProductList";
 import { findProductByCat } from "@/app/(dashboard)/lib/actions";
 import AddButton from "@/components/AddButton/AddButton";
+import { usePathname } from "next/navigation";
 
 const ProductTable = ({ products }) => {
   const [selectedIds, setSelectedIds] = useState([]);
+  const pathname = usePathname();
 
   const handleCheckBox = (id) => {
     // console.log(id);
@@ -25,24 +27,27 @@ const ProductTable = ({ products }) => {
 
   return (
     <>
-      <div className="search flex items-center gap-2 text-xs py-3">
-        <div
-          onClick={() => setSelectedIds([])}
-          className={`${
-            selectedIds.length > 0 ? "com-btn" : "btn-icon"
-          } font-normal `}
-        >
-          Select None
+      {pathname !== "/products" && (
+        <div className="search flex items-center gap-2 text-xs py-3">
+          <div
+            onClick={() => setSelectedIds([])}
+            className={`${
+              selectedIds?.length > 0 ? "com-btn" : "btn-icon"
+            } font-normal `}
+          >
+            Select None
+          </div>
+          <Link
+            href={`/compare/${selectedIds}`}
+            className={`${
+              selectedIds.length > 0 ? "com-btn" : "btn-icon"
+            } font-normal `}
+          >
+            Compare Selected
+          </Link>
         </div>
-        <Link
-          href={`/compare/${selectedIds}`}
-          className={`${
-            selectedIds.length > 0 ? "com-btn" : "btn-icon"
-          } font-normal `}
-        >
-          Compare Selected
-        </Link>
-      </div>
+      )}
+
       <div className="mt-5">
         <table className="w-full text-sm text-left">
           <thead className="text-[11px] border-1 border-b border-[#dbdbdb]">

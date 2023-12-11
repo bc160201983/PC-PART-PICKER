@@ -11,7 +11,7 @@ const DownloadPDFButton = ({ selectedProducts }) => {
   console.log(selectedProducts);
   return (
     <>
-      <div>
+      <div className="btn-icon">
         <PDFDownloadLink
           document={<InvoicePDF selectedProducts={selectedProducts} />}
           fileName="build.pdf"

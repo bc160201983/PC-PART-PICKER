@@ -13,7 +13,9 @@ const Navbar = () => {
           </div>
           <div className="w-4/12 flex justify-center items-center">
             <ul className="flex gap-4">
-              <li>Log In</li>
+              <Link href={"/login"}>
+                <li>Log In</li>
+              </Link>
               <li>Register</li>
             </ul>
           </div>

@@ -161,6 +161,16 @@ export const fetchProduct = async (id) => {
   }
 };
 
+export const fetchAllProducts = async () => {
+  connectToDB();
+  try {
+    const products = await Product.find({});
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const updateProduct = async (formData) => {
   const {
     id,
